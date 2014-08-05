@@ -36,7 +36,6 @@
 
 								   NSDictionary *decodedJSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 								   self.busStops = decodedJSON[@"row"];
-//								   NSLog(@"loaded json %@", self.busStops);
 								   [self addBusStopsPins];
 
 							   } else {
@@ -54,13 +53,14 @@
 
 		if (![busStop[@"_id"] isEqualToString:@"153"]) {
 			coordinate = CLLocationCoordinate2DMake([busStop[@"latitude"] doubleValue],
-									   [busStop[@"longitude"] doubleValue]);
+													[busStop[@"longitude"] doubleValue]);
 		} else {
 			coordinate = CLLocationCoordinate2DMake([busStop[@"latitude"] doubleValue],
-									   [busStop[@"longitude"] doubleValue] * -1);
+													[busStop[@"longitude"] doubleValue] * -1);
 		}
 		annotation.coordinate = coordinate;
 		annotation.title = busStop[@"cta_stop_name"];
+		annotation.subtitle = [NSString stringWithFormat:@"Routes: %@", busStop[@"routes"]];
 		[self.mapView addAnnotation:annotation];
 	}
 }
