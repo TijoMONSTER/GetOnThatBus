@@ -18,6 +18,14 @@
 {
 	self = [super init];
 	self.busStopInfo = busStopInfo;
+
+	// set pin image based on transfer
+	if ([self.busStopInfo[@"inter_modal"] isEqualToString:@"Pace"]) {
+		self.pinImage = [UIImage imageNamed:@"pace"];
+	} else if ([self.busStopInfo[@"inter_modal"] isEqualToString:@"Metra"]) {
+		self.pinImage = [UIImage imageNamed:@"metra"];
+	}
+
 	return self;
 }
 

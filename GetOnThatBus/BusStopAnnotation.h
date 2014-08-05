@@ -11,6 +11,7 @@
 @interface BusStopAnnotation : MKPointAnnotation
 
 @property NSDictionary *busStopInfo;
+@property UIImage *pinImage;
 
 
 - (instancetype)initWithBusStopInfo:(NSDictionary *)busStopInfo;

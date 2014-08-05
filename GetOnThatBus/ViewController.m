@@ -39,6 +39,12 @@
 	MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
 	pin.canShowCallout = YES;
 	pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+
+	BusStopAnnotation *busAnnotation = (BusStopAnnotation *)annotation;
+	if (busAnnotation.pinImage) {
+		pin.image = busAnnotation.pinImage;
+	}
+
 	return pin;
 }
 
