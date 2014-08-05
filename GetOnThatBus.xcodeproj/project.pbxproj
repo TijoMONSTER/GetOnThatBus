@@ -22,6 +22,7 @@
 		2C086A251991575E004BC570 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C086A231991575E004BC570 /* InfoPlist.strings */; };
 		2C086A271991575E004BC570 /* GetOnThatBusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C086A261991575E004BC570 /* GetOnThatBusTests.m */; };
 		2C086A3119915799004BC570 /* CheckMate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C086A3019915799004BC570 /* CheckMate.framework */; };
+		2C086A3319915A96004BC570 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C086A3219915A96004BC570 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		2C086A241991575E004BC570 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C086A261991575E004BC570 /* GetOnThatBusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetOnThatBusTests.m; sourceTree = "<group>"; };
 		2C086A3019915799004BC570 /* CheckMate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CheckMate.framework; sourceTree = "<group>"; };
+		2C086A3219915A96004BC570 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C086A3319915A96004BC570 /* MapKit.framework in Frameworks */,
 				2C086A3119915799004BC570 /* CheckMate.framework in Frameworks */,
 				2C0869FE1991575D004BC570 /* CoreGraphics.framework in Frameworks */,
 				2C086A001991575D004BC570 /* UIKit.framework in Frameworks */,
@@ -104,6 +107,7 @@
 		2C0869FA1991575D004BC570 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C086A3219915A96004BC570 /* MapKit.framework */,
 				2C086A3019915799004BC570 /* CheckMate.framework */,
 				2C0869FB1991575D004BC570 /* Foundation.framework */,
 				2C0869FD1991575D004BC570 /* CoreGraphics.framework */,
