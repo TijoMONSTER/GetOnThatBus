@@ -23,6 +23,8 @@
 		2C086A271991575E004BC570 /* GetOnThatBusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C086A261991575E004BC570 /* GetOnThatBusTests.m */; };
 		2C086A3119915799004BC570 /* CheckMate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C086A3019915799004BC570 /* CheckMate.framework */; };
 		2C086A3319915A96004BC570 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C086A3219915A96004BC570 /* MapKit.framework */; };
+		2C086A3919917ECD004BC570 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C086A3819917ECD004BC570 /* DetailViewController.m */; };
+		2C086A3C19918137004BC570 /* BusStopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C086A3B19918137004BC570 /* BusStopAnnotation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,10 @@
 		2C086A261991575E004BC570 /* GetOnThatBusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetOnThatBusTests.m; sourceTree = "<group>"; };
 		2C086A3019915799004BC570 /* CheckMate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CheckMate.framework; sourceTree = "<group>"; };
 		2C086A3219915A96004BC570 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		2C086A3719917ECD004BC570 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		2C086A3819917ECD004BC570 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		2C086A3A19918137004BC570 /* BusStopAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStopAnnotation.h; sourceTree = "<group>"; };
+		2C086A3B19918137004BC570 /* BusStopAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStopAnnotation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +133,10 @@
 				2C086A111991575E004BC570 /* ViewController.m */,
 				2C086A131991575E004BC570 /* Images.xcassets */,
 				2C086A021991575D004BC570 /* Supporting Files */,
+				2C086A3719917ECD004BC570 /* DetailViewController.h */,
+				2C086A3819917ECD004BC570 /* DetailViewController.m */,
+				2C086A3A19918137004BC570 /* BusStopAnnotation.h */,
+				2C086A3B19918137004BC570 /* BusStopAnnotation.m */,
 			);
 			path = GetOnThatBus;
 			sourceTree = "<group>";
@@ -258,8 +268,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C086A121991575E004BC570 /* ViewController.m in Sources */,
+				2C086A3C19918137004BC570 /* BusStopAnnotation.m in Sources */,
 				2C086A0C1991575D004BC570 /* AppDelegate.m in Sources */,
 				2C086A081991575D004BC570 /* main.m in Sources */,
+				2C086A3919917ECD004BC570 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

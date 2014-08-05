@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "BusStopAnnotation.h"
+#import "DetailViewController.h"
 #import <MapKit/MapKit.h>
 
 @interface ViewController () <MKMapViewDelegate>
@@ -22,6 +24,38 @@
 {
     [super viewDidLoad];
 	[self loadBusStopsJSON];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	self.navigationController.navigationBarHidden = YES;
+}
+
+#pragma mark MKMapViewDelegate
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+	MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
+	pin.canShowCallout = YES;
+	pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+	return pin;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+	[self performSegueWithIdentifier:@"showDetailsForBusStopSegue" sender:view.annotation];
+}
+
+#pragma mark Segues
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if ([segue.identifier isEqualToString:@"showDetailsForBusStopSegue"]) {
+		BusStopAnnotation *annotation = (BusStopAnnotation *)sender;
+		DetailViewController *detailVC = (DetailViewController *)segue.destinationViewController;
+		detailVC.busStopInfo = annotation.busStopInfo;
+	}
 }
 
 #pragma mark Helper methods
@@ -48,7 +82,7 @@
 - (void)addBusStopsPins
 {
 	for (NSDictionary *busStop in self.busStops) {
-		MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+		BusStopAnnotation *annotation = [[BusStopAnnotation alloc] initWithBusStopInfo:busStop];
 
 		CLLocationCoordinate2D coordinate;
 
