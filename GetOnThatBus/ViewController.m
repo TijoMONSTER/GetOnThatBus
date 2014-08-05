@@ -17,13 +17,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://s3.amazonaws.com/mobile-makers-lib/bus.json"]];
+	[NSURLConnection sendAsynchronousRequest:urlRequest
+									   queue:[NSOperationQueue mainQueue]
+						   completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+							   if (!connectionError) {
+								   NSDictionary *decodedJSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+								   NSLog(@"loaded json %@", decodedJSON);
+							   } else {
+								   NSLog(@"Error loading json : %@", [connectionError localizedDescription]);
+							   }
+						   }];
 }
 
 @end
