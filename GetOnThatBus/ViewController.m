@@ -37,6 +37,7 @@
 								   NSDictionary *decodedJSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 								   self.busStops = decodedJSON[@"row"];
 								   [self addBusStopsPins];
+								   [self zoomMapToChicago];
 
 							   } else {
 								   NSLog(@"Error loading json : %@", [connectionError localizedDescription]);
@@ -63,6 +64,20 @@
 		annotation.subtitle = [NSString stringWithFormat:@"Routes: %@", busStop[@"routes"]];
 		[self.mapView addAnnotation:annotation];
 	}
+}
+
+- (void)zoomMapToChicago
+{
+	CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+	[geocoder geocodeAddressString:@"Chicago" completionHandler:^(NSArray *placemarks, NSError *error) {
+		CLPlacemark *placemark = placemarks[0];
+		CLCircularRegion *region = (CLCircularRegion *)placemark.region;
+
+		[self.mapView setRegion:MKCoordinateRegionMakeWithDistance(placemark.location.coordinate,
+																   region.radius,
+																   region.radius)
+					   animated:YES];
+	}];
 }
 
 @end
