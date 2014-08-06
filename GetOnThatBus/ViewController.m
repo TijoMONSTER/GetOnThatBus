@@ -11,9 +11,10 @@
 #import "DetailViewController.h"
 #import <MapKit/MapKit.h>
 
-@interface ViewController () <MKMapViewDelegate>
+@interface ViewController () <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSArray *busStops;
 
 @end
@@ -50,7 +51,32 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-	[self performSegueWithIdentifier:@"showDetailsForBusStopSegue" sender:view.annotation];
+	BusStopAnnotation *annotation = (BusStopAnnotation *)view.annotation;
+	[self performDetailViewSegueWithBusStopInfo:annotation.busStopInfo];
+}
+
+#pragma mark UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	return [self.busStops count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID"];
+	NSDictionary *busStop = self.busStops[indexPath.row];
+	cell.textLabel.text = busStop[@"cta_stop_name"];
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"Routes: %@", busStop[@"routes"]];
+	return cell;
+}
+
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	[tableView deselectRowAtIndexPath:indexPath animated:NO];
+	[self performDetailViewSegueWithBusStopInfo:self.busStops[indexPath.row]];
 }
 
 #pragma mark Segues
@@ -58,11 +84,27 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	if ([segue.identifier isEqualToString:@"showDetailsForBusStopSegue"]) {
-		BusStopAnnotation *annotation = (BusStopAnnotation *)sender;
 		DetailViewController *detailVC = (DetailViewController *)segue.destinationViewController;
-		detailVC.busStopInfo = annotation.busStopInfo;
+		detailVC.busStopInfo = sender;
 	}
 }
+
+#pragma mark IBActions
+
+- (IBAction)onSegmentedControlButtonPressed:(UISegmentedControl *)sender
+{
+	// map
+	if (sender.selectedSegmentIndex == 0) {
+		[self zoomMapToChicago];
+	}
+	// tableView
+	else {
+		[self.tableView reloadData];
+	}
+	self.mapView.hidden = !self.mapView.hidden;
+	self.tableView.hidden = !self.tableView.hidden;
+}
+
 
 #pragma mark Helper methods
 
@@ -118,6 +160,11 @@
 																   region.radius)
 					   animated:YES];
 	}];
+}
+
+- (void)performDetailViewSegueWithBusStopInfo:(NSDictionary *)busStopInfo
+{
+	[self performSegueWithIdentifier:@"showDetailsForBusStopSegue" sender:busStopInfo];
 }
 
 @end
